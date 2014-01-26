@@ -1,9 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.kubakuzma.beskidslaski" version="0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.cordova.helloCordova" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
     <name>Hello Cordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
@@ -12,15 +16,6 @@
     </feature>
     <preference name="useBrowserHistory" value="true" />
     <preference name="exit-on-suspend" value="false" />
-    <name>Beskid Slaski</name>
-    <description>
-    Bardzo prosta mapa Beskidu Śląskiego z funkcją pokazywania aktualnej pozycji. Po zainstalowaniu na telefonie nie wymaga do działania internetu.
-  </description>
-    <author email="kuba@jah.pl" href="http://kubakuzma.com/">
-    Kuba Kuźma
-  </author>
-    <content src="index.html" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="true" />
-    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
 </widget>
