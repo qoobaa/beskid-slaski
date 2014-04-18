@@ -62,8 +62,12 @@ var app = {
     createPeaksLayer: function () {
         return L.geoJson.ajax("geo/peaks.json", {
  	    pointToLayer: function (feature, latLng) {
-                var icon = L.icon({ iconUrl: "img/peak.png", iconSize: [8, 8], iconAnchor: [4, 4] });
-                return L.marker(latLng, { icon: icon });
+                var icon = L.icon({ iconUrl: "img/peak.png", iconSize: [8, 8], iconAnchor: [4, 4] }),
+                    layer = L.marker(latLng, { icon: icon });
+
+                layer.bindPopup(feature.properties.name);
+
+                return layer;
             }
         });
     },
@@ -71,14 +75,32 @@ var app = {
     createSheltersLayer: function () {
         return L.geoJson.ajax("geo/shelters.json", {
  	    pointToLayer: function (feature, latLng) {
-                var icon = L.icon({ iconUrl: "img/shelter.png", iconSize: [16, 16], iconAnchor: [8, 8] });
-                return L.marker(latLng, { icon: icon });
+                var icon = L.icon({ iconUrl: "img/shelter.png", iconSize: [16, 16], iconAnchor: [8, 8] }),
+                    layer = L.marker(latLng, { icon: icon });
+
+                layer.bindPopup(feature.properties.name);
+
+                return layer;
             }
         });
     },
 
     createPathsLayer: function () {
-        return L.geoJson.ajax("geo/paths.json");
+        return L.geoJson.ajax("geo/paths.json", {
+            onEachFeature: function (feature, layer) {
+                var popup = ""
+                        + feature.properties.name + "<br>"
+                        + "Czas przejścia: " + feature.properties.times + "<br>"
+                        + "Dystans: " + feature.properties.distance + " km";
+
+                layer.setStyle({
+                    opacity: 1,
+                    color: feature.properties.colors[0]
+                });
+
+                layer.bindPopup(popup);
+            }
+        });
     },
 
     createAttribution: function () {
