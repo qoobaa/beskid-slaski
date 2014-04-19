@@ -86,21 +86,40 @@ var app = {
     },
 
     createPathsLayer: function () {
-        return L.geoJson.ajax("geo/paths.json", {
+        var geoJson = L.geoJson.ajax("geo/paths.json", {
             onEachFeature: function (feature, layer) {
-                var popup = ""
+                var popup = "<br>"
                         + feature.properties.name + "<br>"
                         + "Czas przejścia: " + feature.properties.times + "<br>"
                         + "Dystans: " + feature.properties.distance + " km";
+
+                feature.properties.colors.forEach(function (color) {
+                    popup = ""
+                        + "<div class='path'><div style='background: " + color + ";'></div></div>"
+                        + popup;
+                });
 
                 layer.setStyle({
                     opacity: 1,
                     color: feature.properties.colors[0]
                 });
 
+                feature.properties.colors.slice(1).forEach(function (color, i) {
+                    var additionalPath = L.polyline(layer.getLatLngs(), {
+                        opacity: 1,
+                        color: color,
+                        className: "path-" + (i + 1)
+                    });
+
+                    additionalPath.bindPopup(popup);
+                    geoJson.addLayer(additionalPath);
+                });
+
                 layer.bindPopup(popup);
             }
         });
+
+        return geoJson;
     },
 
     createAttribution: function () {
