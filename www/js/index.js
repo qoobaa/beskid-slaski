@@ -62,7 +62,7 @@ var app = {
     createPeaksLayer: function () {
         return L.geoJson.ajax("geo/peaks.json", {
  	    pointToLayer: function (feature, latLng) {
-                var icon = L.icon({ iconUrl: "img/peak.png", iconSize: [8, 8], iconAnchor: [4, 4] }),
+                var icon = L.icon({ iconUrl: "img/peak.png", iconSize: [32, 32], iconAnchor: [16, 16] }),
                     layer = L.marker(latLng, { icon: icon });
 
                 layer.bindPopup(feature.properties.name);
@@ -75,7 +75,7 @@ var app = {
     createSheltersLayer: function () {
         return L.geoJson.ajax("geo/shelters.json", {
  	    pointToLayer: function (feature, latLng) {
-                var icon = L.icon({ iconUrl: "img/shelter.png", iconSize: [16, 16], iconAnchor: [8, 8] }),
+                var icon = L.icon({ iconUrl: "img/shelter.png", iconSize: [32, 32], iconAnchor: [16, 16] }),
                     layer = L.marker(latLng, { icon: icon });
 
                 layer.bindPopup(feature.properties.name);
