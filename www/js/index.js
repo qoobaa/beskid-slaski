@@ -26,15 +26,24 @@ var app = {
             this.onWatchPositionError.bind(this),
             { enableHighAccuracy:true }
         );
+        navigator.compass.watchHeading(
+            this.onWatchHeadingSuccess.bind(this),
+            this.onWatchHeadingError.bind(this),
+            { frequency: 1000 }
+        );
     },
 
     onDeviceReady: function () {
         this.map = this.createMap();
 
+        this.markerIcon = L.icon({ iconUrl: "img/marker.png", iconSize: [16, 16], iconAnchor: [8, 8] });
+        this.markerCompassIcon = L.icon({ iconUrl: "img/marker-compass.png", iconSize: [16, 16], iconAnchor: [8, 8] });
+
         this.baseLayer = this.createBaseLayer().addTo(this.map);
         this.attribution = this.createAttribution().addTo(this.map);
         this.zoom = new Zoom().addTo(this.map);
         this.scale = this.createScale().addTo(this.map);
+        this.marker = L.marker([0, 0], { icon: this.markerIcon }).addTo(this.map);
 
         this.layersControl = new Layers({}, {
             "Szczyty": this.createPeaksLayer(),
@@ -135,24 +144,24 @@ var app = {
 
         if (this.marker) {
             this.marker.setLatLng(latLng);
-        } else {
-            this.marker = L.circleMarker(latLng, {
-                opacity: 1,
-                color: "#000000",
-                weight: 1,
-                fillOpacity: 1,
-                fillColor: "#35b3e5",
-                radius: 5
-            });
-            if (this.map) {
-                this.map.addLayer(this.marker);
-            }
         }
     },
 
     onWatchPositionError: function (error) {
         alert("Wystąpił błąd podczas określania położenia\n" +
-              "kod błędu: "    + error.code    + "\n" +
+              "kod błędu: " + error.code + "\n" +
               "komunikat: " + error.message + "\n");
+    },
+
+    onWatchHeadingSuccess: function (heading) {
+        console.log(heading);
+        if (this.marker) {
+            this.marker.setIcon(this.markerCompassIcon);
+            this.marker.setIconAngle(heading);
+        }
+    },
+
+    onWatchHeadingError: function (heading) {
+        // do nothing
     }
 };
