@@ -5,7 +5,8 @@ angular.module("BeskidSlaski")
             restrict: "E",
             scope: {
                 menuClick: "&",
-                layers: "="
+                layers: "=",
+                position: "="
             },
             link: function (scope, element, attributes) {
                 var map, marker, base, peaks, shelters, paths, button, attribution, scale, zoom;
@@ -86,6 +87,10 @@ angular.module("BeskidSlaski")
                 scale = L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
                 zoom = L.control.zoom({ position: "topright" }).addTo(map);
 
+                scope.$watch("layers.position", function (visible) {
+                    visible ? map.addLayer(marker) : map.removeLayer(marker);
+                });
+
                 scope.$watch("layers.peaks", function (visible) {
                     visible ? map.addLayer(peaks) : map.removeLayer(peaks);
                 });
@@ -96,6 +101,12 @@ angular.module("BeskidSlaski")
 
                 scope.$watch("layers.paths", function (visible) {
                     visible ? map.addLayer(paths) : map.removeLayer(paths);
+                });
+
+                scope.$watchGroup(["position.latitude", "position.longitude"], function (position) {
+                    if (position[0] !== undefined && position[1] !== undefined) {
+                        marker.setLatLng(position);
+                    }
                 });
             }
         };
