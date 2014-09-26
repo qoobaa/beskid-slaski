@@ -7,6 +7,7 @@
     "cordova": "^3.6.3-0.2.13",
     "cordova-lib": "^0.21.13"
   },
+  "repository": "https://github.com/cowbell/beskid-slaski.git",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
