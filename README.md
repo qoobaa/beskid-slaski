@@ -1,8 +1,8 @@
 beskid-slaski
 =============
 
-    npm install cordova
-    npm install shelljs
+    npm install
+    cordova platform add android
 
 Requirements
 ------------

@@ -1,14 +1,30 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.kubakuzma.beskidslaski" version="0.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.kubakuzma.beskidslaski" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Beskid Śląski</name>
+
   <description>
     Bardzo prosta mapa Beskidu Śląskiego z funkcją pokazywania aktualnej pozycji. Po zainstalowaniu na telefonie nie wymaga do działania internetu.
   </description>
+
   <author email="kuba@jah.pl" href="http://kubakuzma.com/">
     Kuba Kuźma
   </author>
+
   <content src="index.html" />
+
   <preference name="fullscreen" value="false" />
   <preference name="webviewbounce" value="true" />
   <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
+
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true" />
+  </feature>
+
+  <preference name="DisallowOverscroll" value="true" />
+  <preference name="StatusBarOverlaysWebView" value="false" />
+  <preference name="StatusBarBackgroundColor" value="#F7F7F7" />
+  <preference name="StatusBarStyle" value="blacktranscluent" />
+  <preference name="BackgroundColor" value="0xFFFFFFFF"/>
+
+  <icon src="res/icons/" />
 </widget>

@@ -1,0 +1,16 @@
+{
+  "name": "beskid-slaski",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cordova": "^3.6.3-0.2.13",
+    "cordova-lib": "^0.21.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
