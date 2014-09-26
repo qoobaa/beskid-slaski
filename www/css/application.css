@@ -6,8 +6,39 @@
     display: block;
     width: 100%;
     height: 100%;
+    background: url(../img/ps_neutral.png);
 }
 
 .leaflet-control {
     -webkit-transform: translate3d(0, 0, 0); /* prevent disappearing button on android */
+}
+
+.path {
+    border: 1px solid black;
+    width: 20px;
+    display: inline-block;
+}
+
+.path > div {
+    height: 15px;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+}
+
+.path-1 {
+    transform: translate(4px, 4px);
+    -webkit-transform: translate(4px, 4px);
+}
+
+.path-2 {
+    transform: translate(-4px, -4px);
+    -webkit-transform: translate(-4px, -4px);
+}
+
+.path-icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
 }

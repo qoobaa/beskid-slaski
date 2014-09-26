@@ -8,16 +8,41 @@
     <link rel="stylesheet" type="text/css" href="css/application.css">
     <title>Beskid Śląski</title>
   </head>
-  <body ng-app="BeskidSlaski">
+  <body ng-app="BeskidSlaski" ng-controller="BeskidSlaskiController">
     <div class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in" id="menu">
       <h1 class="app-name">Beskid Śląski</h1>
 
       <div class="scrollable">
         <div class="scrollable-content">
-          <div class="list-group" toggle="off" bubble target="menu">
-            <a class="list-group-item" href="javascript:;">Szczyty <i class="fa fa-chevron-right pull-right"></i></a>
-            <a class="list-group-item" href="javascript:;">Schroniska <i class="fa fa-chevron-right pull-right"></i></a>
-            <a class="list-group-item" href="javascript:;">Szlaki <i class="fa fa-chevron-right pull-right"></i></a>
+          <div class="list-group" toggle="off" target="menu" bubble>
+            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('peaks')" ng-if="!layers.peaks">
+              <img src="img/peak.png">
+              Pokaż szczyty
+            </a>
+            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('peaks')" ng-if="layers.peaks">
+              <img src="img/peak.png">
+              Ukryj szczyty
+            </a>
+            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('shelters')" ng-if="!layers.shelters">
+              <img src="img/shelter.png">
+              Pokaż schroniska
+            </a>
+            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('shelters')" ng-if="layers.shelters">
+              <img src="img/shelter.png">
+              Ukryj schroniska
+            </a>
+            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('paths')" ng-if="!layers.paths">
+              <span class="path-icon">
+                <div class="path"><div style="background: hsl(10, 80%, 53%);"></div></div>
+              </span>
+              Pokaż szlaki
+            </a>
+            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('paths')" ng-if="layers.paths">
+              <span class="path-icon">
+                <div class="path"><div style="background: hsl(10, 80%, 53%);"></div></div>
+              </span>
+              Ukryj szlaki
+            </a>
           </div>
         </div>
       </div>
@@ -26,7 +51,7 @@
     <div class="app">
       <div class="app-body">
         <ng-view class="app-content">
-          <bs-leaflet class="map"></bs-leaflet>
+          <bs-leaflet class="map" menu-click="toggle('menu')" layers="layers"></bs-leaflet>
         </ng-view>
       </div>
     </div>
@@ -41,6 +66,7 @@
     <script type="text/javascript" src="js/mobile-angular-ui/toggle.js"></script>
     <script type="text/javascript" src="js/mobile-angular-ui/fastclick.js"></script>
     <script type="text/javascript" src="js/application.js"></script>
-    <script type="text/javascript" src="js/directives/leaflet.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script type="text/javascript" src="js/leaflet.js"></script>
   </body>
 </html>

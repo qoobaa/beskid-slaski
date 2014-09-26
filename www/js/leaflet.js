@@ -1,14 +1,14 @@
-angular.module("BeskidSlaski.directives")
+angular.module("BeskidSlaski")
 
-    .directive("bsLeaflet", function () {
+    .directive("bsLeaflet", function ($parse) {
         return {
             restrict: "E",
+            scope: {
+                menuClick: "&",
+                layers: "="
+            },
             link: function (scope, element, attributes) {
                 var map, marker, base, peaks, shelters, paths, button, attribution, scale, zoom;
-
-                function toggleMenu() {
-                    scope.toggle("menu");
-                }
 
                 map = L.map(element[0], {
                     center: L.latLng(49.707493, 19.013193),
@@ -55,7 +55,7 @@ angular.module("BeskidSlaski.directives")
 
                         feature.properties.colors.forEach(function (color) {
                             popup = ""
-                                + "<div class='path'><div style='background: " + color + ";'></div></div>"
+                                + "<div class='path'><div style='background: " + color + ";'></div></div>&nbsp;"
                                 + popup;
                         });
 
@@ -80,14 +80,23 @@ angular.module("BeskidSlaski.directives")
                 });
 
                 base.addTo(map);
-                // shelters.addTo(map);
-                // peaks.addTo(map);
-                // paths.addTo(map);
 
-                button = L.easyButton("fa-bars", toggleMenu, "Toggle Menu", map);
+                button = L.easyButton("fa-bars", scope.menuClick, "Toggle Menu", map);
                 attribution = L.control.attribution({ prefix: false, position: "bottomleft" }).addAttribution('&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors').addTo(map);
                 scale = L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
                 zoom = L.control.zoom({ position: "topright" }).addTo(map);
+
+                scope.$watch("layers.peaks", function (visible) {
+                    visible ? map.addLayer(peaks) : map.removeLayer(peaks);
+                });
+
+                scope.$watch("layers.shelters", function (visible) {
+                    visible ? map.addLayer(shelters) : map.removeLayer(shelters);
+                });
+
+                scope.$watch("layers.paths", function (visible) {
+                    visible ? map.addLayer(paths) : map.removeLayer(paths);
+                });
             }
         };
     });
