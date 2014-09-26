@@ -92,7 +92,7 @@ function copyAsset (scope, node) {
         return dict[p1];
     });
 
-    var srcPath = "www/" + node.attrib.src;
+    var srcPath = node.attrib.src;
     var fileName = srcPath.match(/[^\/]+$/)[0];
     if (platformDir[platform] && platformDir[platform].nameMap && platformDir[platform].nameMap[fileName]) {
         fileName = platformDir[platform].nameMap[fileName];
@@ -168,7 +168,7 @@ projectConfig.doc.findall("icon").map(function (node) {
         }
 
     } else {
-        copyAsset ("icon", node);
+        copyAsset("icon", node);
     }
 });
 
