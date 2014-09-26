@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=low-dpi" />
-    <link rel="stylesheet" type="text/css" href="css/leaflet.css" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi">
+    <link rel="stylesheet" type="text/css" href="css/application.css">
     <title>Beskid Śląski</title>
   </head>
-  <body>
-    <div id="map"></div>
+  <body ng-app="BeskidSlaski">
+    <div class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in" id="menu">
+      <h1 class="app-name">Beskid Śląski</h1>
+
+      <div class="scrollable">
+        <div class="scrollable-content">
+          <div class="list-group" toggle="off" bubble target="menu">
+            <a class="list-group-item" href="javascript:;">Szczyty <i class="fa fa-chevron-right pull-right"></i></a>
+            <a class="list-group-item" href="javascript:;">Schroniska <i class="fa fa-chevron-right pull-right"></i></a>
+            <a class="list-group-item" href="javascript:;">Szlaki <i class="fa fa-chevron-right pull-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app">
+      <div class="app-body">
+        <ng-view class="app-content">
+          <bs-leaflet class="map"></bs-leaflet>
+        </ng-view>
+      </div>
+    </div>
 
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/leaflet.js"></script>
-    <script type="text/javascript" src="js/leaflet.ajax.js"></script>
-    <script type="text/javascript" src="js/Marker.Rotate.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-      app.initialize();
-    </script>
+    <script type="text/javascript" src="js/angular/angular.js"></script>
+    <script type="text/javascript" src="js/fastclick/fastclick.js"></script>
+    <script type="text/javascript" src="js/leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="js/leaflet-ajax/leaflet.ajax.js"></script>
+    <script type="text/javascript" src="js/easy-button/easy-button.js"></script>
+    <script type="text/javascript" src="js/mobile-angular-ui/sidebars.js"></script>
+    <script type="text/javascript" src="js/mobile-angular-ui/toggle.js"></script>
+    <script type="text/javascript" src="js/mobile-angular-ui/fastclick.js"></script>
+    <script type="text/javascript" src="js/application.js"></script>
+    <script type="text/javascript" src="js/directives/leaflet.js"></script>
   </body>
 </html>
