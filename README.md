@@ -1,4 +1,4 @@
-beskid-slaski
+Beskid Śląski
 =============
 
     npm install
