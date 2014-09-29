@@ -12,13 +12,13 @@
     <section layout="horizontal" flex>
 
       <material-sidenav class="material-sidenav-left material-whiteframe-z2" component-id="left">
-        <material-toolbar class="material-theme-green">
-          <h1 class="material-toolbar-tools">Beskid Śląski</h1>
+        <material-toolbar class="material-theme-indigo">
+          <h1 class="material-toolbar-tools">Beskid&nbsp;Śląski</h1>
         </material-toolbar>
 
         <material-content class="material-content-padding" layout="vertical" layout-align="start start">
           <material-checkbox ng-model="layers.position">
-            Aktualna pozycja
+            Aktualna&nbsp;pozycja
           </material-checkbox>
           <material-checkbox ng-model="layers.peaks">
             Szczyty
@@ -32,7 +32,13 @@
         </material-content>
       </material-sidenav>
 
-      <bs-leaflet menu-click="toggleLeft()" layers="layers" position="position" flex></bs-leaflet>
+      <bs-leaflet menu-click="toggleLeft()" layers="layers" position="position" flex>
+        <material-content class="material-content-padding" layout="vertical" layout-align="start start">
+          <material-button class="material-button-fab material-button-raised material-button-colored material-theme-indigo" style="z-index: 1; -webkit-transform: translate3d(0, 0, 0);" ng-click="toggleLeft()">
+            <i class="icon-material-menu"></i>
+          </material-button>
+        </material-content>
+      </bs-leaflet>
     </section>
 
     <script type="text/javascript" src="cordova.js"></script>

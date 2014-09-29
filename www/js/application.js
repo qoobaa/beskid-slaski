@@ -3,6 +3,6 @@ angular.module("BeskidSlaski", [
     "ngMaterial"
 ]);
 
-document.addEventListener("deviceready", function () {
-    angular.bootstrap(document, ["BeskidSlaski"]);
-}, false);
+// document.addEventListener("deviceready", function () {
+//     angular.bootstrap(document, ["BeskidSlaski"]);
+// }, false);

@@ -9,7 +9,7 @@ angular.module("BeskidSlaski")
                 position: "="
             },
             link: function (scope, element, attributes) {
-                var map, marker, base, peaks, shelters, paths, button, attribution, scale, zoom;
+                var map, marker, base, peaks, shelters, paths, attribution, scale;
 
                 map = L.map(element[0], {
                     center: L.latLng(49.707493, 19.013193),
@@ -30,7 +30,7 @@ angular.module("BeskidSlaski")
                         var icon = L.icon({ iconUrl: "img/peak.png", iconSize: [32, 32], iconAnchor: [16, 16] }),
                             layer = L.marker(latLng, { icon: icon });
 
-                        layer.bindPopup(feature.properties.name);
+                        layer.bindPopup(feature.properties.name || "brak nazwy");
 
                         return layer;
                     }
@@ -41,7 +41,7 @@ angular.module("BeskidSlaski")
                         var icon = L.icon({ iconUrl: "img/shelter.png", iconSize: [32, 32], iconAnchor: [16, 16] }),
                             layer = L.marker(latLng, { icon: icon });
 
-                        layer.bindPopup(feature.properties.name);
+                        layer.bindPopup(feature.properties.name || "brak nazwy");
 
                         return layer;
                     }
@@ -82,13 +82,8 @@ angular.module("BeskidSlaski")
 
                 base.addTo(map);
 
-                button = L.easyButton("icon-material-menu", function () {
-                    scope.$apply(scope.menuClick);
-                }, "Toggle Menu", map);
-
                 attribution = L.control.attribution({ prefix: false, position: "bottomleft" }).addAttribution('&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors').addTo(map);
                 scale = L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
-                zoom = L.control.zoom({ position: "topright" }).addTo(map);
 
                 scope.$watch("layers.position", function (visible) {
                     visible ? map.addLayer(marker) : map.removeLayer(marker);

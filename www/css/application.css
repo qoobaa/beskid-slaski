@@ -1,3 +1,4 @@
+@import "roboto.css";
 @import "leaflet/leaflet.css";
 @import "angular-material/angular-material.css";
 @import "bootstrap-material-design/icons-material-design.css";
@@ -5,10 +6,6 @@
 .leaflet-top,
 .leaflet-bottom {
     z-index: 0;
-}
-
-.leaflet-control {
-    -webkit-transform: translate3d(0, 0, 0); /* prevent disappearing button on android */
 }
 
 .path {
@@ -31,47 +28,4 @@
 .path-2 {
     transform: translate(-4px, -4px);
     -webkit-transform: translate(-4px, -4px);
-}
-
-.menu-icon {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-}
-
-.menu-item {
-    background-color: #fff;
-    border-width: 0;
-    cursor: pointer;
-    display: block;
-    color: #333;
-    font-size: inherit;
-    line-height: 40px;
-    max-height: 40px;
-    margin: 0;
-    outline: 0;
-    padding: 0 28px;
-    position: relative;
-    text-align: left;
-    text-decoration: none;
-    width: 100%;
-    z-index: 1;
-    -webkit-transition: .2s linear;
-    -webkit-transition-property: max-height,background-color;
-    -moz-transition: .2s linear;
-    -moz-transition-property: max-height,background-color;
-    transition: .2s linear;
-    transition-property: max-height,background-color
-}
-
-.menu-item:focus,.menu-item:hover {
-    color: #999
-}
-
-.menu-item.menu-sub-item.active {
-    background-color: #eee;
-    font-weight: 700;
-    color: #4285f4
 }
