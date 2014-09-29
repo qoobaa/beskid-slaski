@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="BeskidSlaski">
   <head>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
@@ -8,76 +8,41 @@
     <link rel="stylesheet" type="text/css" href="css/application.css">
     <title>Beskid Śląski</title>
   </head>
-  <body ng-controller="BeskidSlaskiController">
-    <div class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in" id="menu">
-      <h1 class="app-name">Beskid Śląski</h1>
+  <body ng-controller="BeskidSlaskiController" layout="vertical">
+    <section layout="horizontal" flex>
 
-      <div class="scrollable">
-        <div class="scrollable-content">
-          <div class="list-group" toggle="off" target="menu" bubble>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('position')" ng-if="!layers.position">
-              <span class="menu-icon">
-                <img src="img/marker.png">
-              </span>
-              Pokaż moją pozycję
-            </a>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('position')" ng-if="layers.position">
-              <span class="menu-icon">
-                <img src="img/marker.png">
-              </span>
-              Ukryj moją pozycję
-            </a>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('peaks')" ng-if="!layers.peaks">
-              <img src="img/peak.png">
-              Pokaż szczyty
-            </a>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('peaks')" ng-if="layers.peaks">
-              <img src="img/peak.png">
-              Ukryj szczyty
-            </a>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('shelters')" ng-if="!layers.shelters">
-              <img src="img/shelter.png">
-              Pokaż schroniska
-            </a>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('shelters')" ng-if="layers.shelters">
-              <img src="img/shelter.png">
-              Ukryj schroniska
-            </a>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('paths')" ng-if="!layers.paths">
-              <span class="menu-icon">
-                <div class="path"><div style="background: hsl(10, 80%, 53%);"></div></div>
-              </span>
-              Pokaż szlaki
-            </a>
-            <a class="list-group-item" href="javascript:;" ng-click="toggleLayer('paths')" ng-if="layers.paths">
-              <span class="menu-icon">
-                <div class="path"><div style="background: hsl(10, 80%, 53%);"></div></div>
-              </span>
-              Ukryj szlaki
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+      <material-sidenav class="material-sidenav-left material-whiteframe-z2" component-id="left">
+        <material-toolbar class="material-theme-green">
+          <h1 class="material-toolbar-tools">Beskid Śląski</h1>
+        </material-toolbar>
 
-    <div class="app">
-      <div class="app-body">
-        <ng-view class="app-content">
-          <bs-leaflet class="map" menu-click="toggle('menu')" layers="layers" position="position"></bs-leaflet>
-        </ng-view>
-      </div>
-    </div>
+        <material-content class="material-content-padding" layout="vertical" layout-align="start start">
+          <material-checkbox ng-model="layers.position">
+            Aktualna pozycja
+          </material-checkbox>
+          <material-checkbox ng-model="layers.peaks">
+            Szczyty
+          </material-checkbox>
+          <material-checkbox ng-model="layers.shelters">
+            Schroniska
+          </material-checkbox>
+          <material-checkbox ng-model="layers.paths">
+            Szlaki
+          </material-checkbox>
+        </material-content>
+      </material-sidenav>
+
+      <bs-leaflet menu-click="toggleLeft()" layers="layers" position="position" flex></bs-leaflet>
+    </section>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/angular/angular.js"></script>
+    <script type="text/javascript" src="js/angular/angular-animate.js"></script>
+    <script type="text/javascript" src="js/angular-material/angular-material.js"></script>
     <script type="text/javascript" src="js/ng-geolocation/ngGeolocation.js"></script>
-    <script type="text/javascript" src="js/fastclick/fastclick.js"></script>
     <script type="text/javascript" src="js/leaflet/leaflet.js"></script>
     <script type="text/javascript" src="js/leaflet-ajax/leaflet.ajax.js"></script>
     <script type="text/javascript" src="js/easy-button/easy-button.js"></script>
-    <script type="text/javascript" src="js/mobile-angular-ui/sidebars.js"></script>
-    <script type="text/javascript" src="js/mobile-angular-ui/toggle.js"></script>
-    <script type="text/javascript" src="js/mobile-angular-ui/fastclick.js"></script>
     <script type="text/javascript" src="js/application.js"></script>
     <script type="text/javascript" src="js/controller.js"></script>
     <script type="text/javascript" src="js/leaflet.js"></script>

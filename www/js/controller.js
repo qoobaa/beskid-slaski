@@ -1,6 +1,6 @@
 angular.module("BeskidSlaski")
 
-    .controller("BeskidSlaskiController", function ($scope, $geolocation) {
+    .controller("BeskidSlaskiController", function ($scope, $materialSidenav, $geolocation) {
         $scope.layers = {
             position: false,
             peaks: false,
@@ -8,17 +8,17 @@ angular.module("BeskidSlaski")
             paths: false
         };
 
-        $scope.toggleLayer = function (layer) {
-            $scope.layers[layer] = !$scope.layers[layer];
-
-            if (layer === "position") {
-                if ($scope.layers.position) {
-                    $scope.watchId = $geolocation.watchPosition({ enableHighAccuracy: true });
-                } else {
-                    $geolocation.clearWatch($scope.watchId);
-                }
-            }
+        $scope.toggleLeft = function() {
+            $materialSidenav("left").toggle();
         };
+
+        $scope.$watch("layers.position", function (visible) {
+            if (visible) {
+                $scope.watchId = $geolocation.watchPosition({ enableHighAccuracy: true });
+            } else {
+                $geolocation.clearWatch($scope.watchId);
+            }
+        });
 
         $scope.position = $geolocation.position.coords;
     });

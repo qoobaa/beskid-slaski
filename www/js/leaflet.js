@@ -82,7 +82,10 @@ angular.module("BeskidSlaski")
 
                 base.addTo(map);
 
-                button = L.easyButton("fa-bars", scope.menuClick, "Toggle Menu", map);
+                button = L.easyButton("icon-material-menu", function () {
+                    scope.$apply(scope.menuClick);
+                }, "Toggle Menu", map);
+
                 attribution = L.control.attribution({ prefix: false, position: "bottomleft" }).addAttribution('&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors').addTo(map);
                 scale = L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
                 zoom = L.control.zoom({ position: "topright" }).addTo(map);
