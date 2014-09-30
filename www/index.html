@@ -8,38 +8,35 @@
     <link rel="stylesheet" type="text/css" href="css/application.css">
     <title>Beskid Śląski</title>
   </head>
-  <body ng-controller="BeskidSlaskiController" layout="vertical">
-    <section layout="horizontal" flex>
+  <body ng-controller="BeskidSlaskiController" layout="horizontal">
+    <material-sidenav class="material-sidenav-left material-whiteframe-z2" component-id="left">
+      <material-toolbar class="material-theme-indigo">
+        <h1 class="material-toolbar-tools">Beskid&nbsp;Śląski</h1>
+      </material-toolbar>
 
-      <material-sidenav class="material-sidenav-left material-whiteframe-z2" component-id="left">
-        <material-toolbar class="material-theme-indigo">
-          <h1 class="material-toolbar-tools">Beskid&nbsp;Śląski</h1>
-        </material-toolbar>
+      <material-content layout="vertical" layout-align="start start">
+        <material-checkbox ng-model="layers.position">
+          Aktualna&nbsp;pozycja
+        </material-checkbox>
+        <material-checkbox ng-model="layers.peaks">
+          Szczyty
+        </material-checkbox>
+        <material-checkbox ng-model="layers.shelters">
+          Schroniska
+        </material-checkbox>
+        <material-checkbox ng-model="layers.paths">
+          Szlaki
+        </material-checkbox>
+      </material-content>
+    </material-sidenav>
 
-        <material-content class="material-content-padding" layout="vertical" layout-align="start start">
-          <material-checkbox ng-model="layers.position">
-            Aktualna&nbsp;pozycja
-          </material-checkbox>
-          <material-checkbox ng-model="layers.peaks">
-            Szczyty
-          </material-checkbox>
-          <material-checkbox ng-model="layers.shelters">
-            Schroniska
-          </material-checkbox>
-          <material-checkbox ng-model="layers.paths">
-            Szlaki
-          </material-checkbox>
-        </material-content>
-      </material-sidenav>
-
-      <bs-leaflet menu-click="toggleLeft()" layers="layers" position="position" flex>
-        <material-content class="material-content-padding" layout="vertical" layout-align="start start">
-          <material-button class="material-button-fab material-button-raised material-button-colored material-theme-indigo" style="z-index: 1; -webkit-transform: translate3d(0, 0, 0);" ng-click="toggleLeft()">
-            <i class="icon-material-menu"></i>
-          </material-button>
-        </material-content>
-      </bs-leaflet>
-    </section>
+    <bs-leaflet menu-click="toggleLeft()" layers="layers" position="position" flex>
+      <material-content class="material-content-padding" layout="vertical" layout-align="start start">
+        <material-button class="material-button-fab material-button-raised material-button-colored material-theme-indigo" style="z-index: 1; -webkit-transform: translate3d(0, 0, 0);" ng-click="toggleLeft()">
+          <i class="icon-material-menu"></i>
+        </material-button>
+      </material-content>
+    </bs-leaflet>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/angular/angular.js"></script>

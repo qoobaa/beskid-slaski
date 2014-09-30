@@ -30,7 +30,7 @@ angular.module("BeskidSlaski")
                         var icon = L.icon({ iconUrl: "img/peak.png", iconSize: [32, 32], iconAnchor: [16, 16] }),
                             layer = L.marker(latLng, { icon: icon });
 
-                        layer.bindPopup(feature.properties.name || "brak nazwy");
+                        layer.bindPopup(feature.properties.name || "brak danych");
 
                         return layer;
                     }
@@ -41,7 +41,7 @@ angular.module("BeskidSlaski")
                         var icon = L.icon({ iconUrl: "img/shelter.png", iconSize: [32, 32], iconAnchor: [16, 16] }),
                             layer = L.marker(latLng, { icon: icon });
 
-                        layer.bindPopup(feature.properties.name || "brak nazwy");
+                        layer.bindPopup(feature.properties.name || "brak danych");
 
                         return layer;
                     }
